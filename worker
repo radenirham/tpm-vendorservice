@@ -1,0 +1,24 @@
+<?php
+
+use Spiral\Goridge\StreamRelay;
+use Spiral\RoadRunner\Worker;
+use App\MKILib\Contracts\Kernel as KernelContract;
+use App\MKILib\Contracts\ServiceInvoker;
+use App\MKILib\Kernel;
+use App\MKILib\LaravelServiceInvoker;
+
+use GrpcServerService\Sample\ConnectionService;
+use GrpcServerService\Base\UserdataService;
+
+require __DIR__ . '/vendor/autoload.php';
+$app = require_once __DIR__ . '/bootstrap/app.php';
+
+$app->singleton(KernelContract::class, Kernel::class);
+$app->singleton(ServiceInvoker::class, LaravelServiceInvoker::class);
+
+$kernel = $app->make(KernelContract::class);
+
+$kernel->registerService(ConnectionService::class);
+$kernel->registerService(UserdataService::class);
+
+$kernel->serve(new Worker(new StreamRelay(STDIN, STDOUT)));

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package GrpcServerModel.base;
+option php_metadata_namespace = "GrpcServerMetadata";
+
+service Userdata {
+    rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
+}
+
+message GetUserRequest {
+    string request = 1;
+}
+
+message GetUserResponse {
+    string response = 2;
+}

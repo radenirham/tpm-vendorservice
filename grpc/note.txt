@@ -1,0 +1,10 @@
+
+Server:
+protoc --proto_path=grpc/server/protos/ --plugin=grpc/bin/protoc-gen-php-grpc --php_out=./grpc/server/generated --php-grpc_out=./grpc/server/generated base.proto
+
+Client:
+protoc --proto_path=grpc/client/protos/ --php_out=./grpc/client/generated SampleService/base.proto
+
+
+./grpc/bin/rr serve --dotenv .env
+php -S localhost:8002 -t public

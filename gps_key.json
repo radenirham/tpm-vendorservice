@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "eproc-holding-dev",
+    "private_key_id": "daaad7e0acf67d677accde4c55803837d7a915e7",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4MsELWfVqcvW/\nARQ+hSD8FjWMDAJx44m28Ra6Lv95CTnM9vChm5LF0kHiyD/PS507yJ4iWo8ug4o9\n+rwqJnlsKg+jcKbCPRqnkAgJw588gLhL8zzIc2inasPSRNJNkjvf0rxLQAmqiHg4\nTGkobKKMtaVH4nFWlBKspUMg8rz7jEv73tNNAmkAvmSMcFN+6iaigmLCjxTaZBPl\nrfua/ZnLHZLZXArqMpVu1bxxh1ZMzLKBMrD2m1rhS1LWUwQj+8frEnLMZ2WZQmek\npxqDl6vwHvTbmHJnrWUKJHjrOkTVNSFr4BAfLddb8j7RnoGRKHNyC5+vmYpaGft6\nVZK+gxbZAgMBAAECggEACMjW3wk3xI9d+/F7uy2TMKKIhDjQZwkQeMqPqGp0YZvY\nh1dhi3uFaOzJmpytOmAjTAYZ0I6cFH5Oef06uxHhqZBp9YP6V/odCs+6KmkLb5G9\n+FVN2UtzusRDOYRxuSRXualttHMF4v2mKh0uyLBBok9JZh+9AwGF0HkDNg+NhruJ\n6ogdDaItQtpUrLZrwNlSpff+KaJV/+4Q9FHakTNOjqBaIJ+0bDzfu9yx9hrpWKpV\nQHlfSqcg5+X58w1+LKhpivvrrR4Qd6MXSFry4aLNBItoNDeJuKNf1M/gN7bST6KY\nMp2oaiKR33D3aIXVDtkJoNcB1JeYFI6/UVr+yP4j3wKBgQDjAFGZktClmp4KP54g\nB+9WmDaY9rjqyEjpv067YTFmvonMxaOoI7v08SYpxV0R2lc3PDBt2CGRvm3v5x1U\nXC/AffRcxL8YcitOh6Nv3FZYbRluh/xmxR7inuib805s++qkKHo2l5h1R95a0c89\nOtBN8+zNKeORGSXSnenNK197zwKBgQDPuqNVWcVoub7sFz8EYxxvh68W8S+td/Ox\n638psmp2oLaatZT/jLxU/pJ4MSa/1WNDlrNnsDxPTCfPtFLJM0BxdpSskljYQUuw\nW9vhpZokQ6G94+jhEea5xc5PbQt/hAib4RSYeLf89qU0ra2jNjAjC6T4zj7d7OPz\nxuUQesck1wKBgHNDDSv6lUERUmAHz4WaIdgJb+eZl2l3izZNMnAIuOnfo967GA9f\nHagQ7nzVPx26jQB56mlMDjePxwjChGz6ZjDKg9K7AAEsr3qverho29sIgppSKEIS\no00UvS26jD7gZ1M1TmD79qjOdkQNNrpza6O5UKsYMvnRGBhqoHXSKSiXAoGAcO85\nSXfK2YrSf6yLuCjiFsifqktp7ldeiAZOVi8HroLlg+rgnKa45USaAPpH5NdwZhiS\nZPbtcvcmVcflkjlo+cbMQZ426ytkqPbn7h+IU9rpHkHAJE0FMU6XQZs5OxRfUc/m\n0JYhAUhevOsHkcouFX+JKzOF/kWCENC7TGBT0HUCgYEAgwyEcfOnj/q9vtRTsM1W\nEZf0MkfKkLZ+WR6k1HN93AjNqvUDNjzQ7b2DJxRps/WBvz9vD4e5doMsh90Gh2br\nGL048Nz7xFwshIZDu2omfTSQwFTaSG79HmpRviBqqhLVyX0AeKIolrC/ndXZaMHS\ntzsK/t6ACQVEoONFrSDlbJc=\n-----END PRIVATE KEY-----\n",
+    "client_email": "pubsub-user@eproc-holding-dev.iam.gserviceaccount.com",
+    "client_id": "111815260284131195985",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pubsub-user%40eproc-holding-dev.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
