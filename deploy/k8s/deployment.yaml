@@ -21,7 +21,11 @@ spec:
         ports:
         - containerPort: 80
         resources:
+          limits:
+            cpu: 1024m
+            ephemeral-storage: 2Gi
+            memory: 4Gi
           requests:
-            cpu: 150m
-            ephemeral-storage: 250Mi
-            memory: 300Mi
+            cpu: 100m
+            ephemeral-storage: 128Mi
+            memory: 256Mi
