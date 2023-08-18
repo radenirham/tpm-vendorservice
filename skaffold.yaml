@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+metadata:
+  name: skaffold-dev
+build:
+  artifacts:
+  - image: us-central1-docker.pkg.dev/eproc-holding-dev/app-core/internalcoreservice
+    docker:
+      dockerfile: ./deploy/Dockerfile-dev
+deploy:
+  kubectl:
+    manifests: ["deploy/k8s/*.yaml"]
