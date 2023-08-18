@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\v1;
+namespace App\Http\Controllers\V1;
 
-use App\Http\Controllers\v1\ApiController;
+use App\Http\Controllers\V1\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\v1;
+namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -10,7 +10,7 @@ use Firebase\JWT\Key;
 
 use Illuminate\Support\Facades\Hash;
 
-use App\Http\Controllers\v1\ApiController;
+use App\Http\Controllers\V1\ApiController;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Auth\ViewVendorUser;

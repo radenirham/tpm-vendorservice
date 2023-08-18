@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\v1\Sample;
+namespace App\Http\Controllers\V1\Sample;
 
-use App\Http\Controllers\v1\ApiController;
+use App\Http\Controllers\V1\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;

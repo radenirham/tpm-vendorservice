@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\v1;
+namespace App\Http\Controllers\V1;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller as BaseController;
