@@ -1,0 +1,104 @@
+FROM ghcr.io/roadrunner-server/roadrunner:2023.2 AS roadrunner
+FROM php:8.1-fpm
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV PHP_MEMORY_LIMIT=-1
+ENV TZ="Asia/Jakarta"
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    locales \
+    libpq-dev \
+    libzip-dev \
+    libonig-dev \
+    zip \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
+    unzip \
+    git \
+    curl \
+    htop \
+    sudo \
+    telnet \
+    iputils-ping
+
+RUN docker-php-ext-install -j$(nproc) pdo \
+    && docker-php-ext-install -j$(nproc) sockets \
+    && docker-php-ext-install -j$(nproc) mbstring zip exif pcntl \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install -j$(nproc) pdo_pgsql pgsql
+
+RUN pecl install grpc
+
+#install protoc
+RUN mkdir -p /tmp/protoc && \
+    curl -L https://github.com/google/protobuf/releases/download/v3.2.0/protoc-3.2.0-linux-x86_64.zip > /tmp/protoc/protoc.zip && \
+    cd /tmp/protoc && \
+    unzip protoc.zip && \
+    cp /tmp/protoc/bin/protoc /usr/local/bin && \
+    cd /tmp && \
+    rm -r /tmp/protoc && \
+    docker-php-ext-enable grpc
+
+RUN cd /usr/local/etc/php/conf.d/ && echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
+
+RUN apt-get update && apt-get install -y supervisor nginx nano && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /var/www/html
+
+COPY ./composer.json /var/www/html
+RUN mkdir -p /var/www/html/tests
+COPY ./tests/ /var/www/html/tests/
+
+COPY . /var/www/html
+
+RUN rm /etc/nginx/sites-enabled/default
+
+COPY ./deploy/config/nginx-vhost-default.conf /etc/nginx/sites-enabled/default
+
+RUN mv /usr/local/etc/php-fpm.d/www.conf /usr/local/etc/php-fpm.d/www.conf.backup
+COPY ./deploy/config/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./deploy/config/php-config.ini /usr/local/etc/php/php.ini
+
+RUN curl -sS https://getcomposer.org/installer | \
+php -- --install-dir=/usr/bin/ --filename=composer
+
+RUN composer clearcache
+RUN composer selfupdate
+RUN composer install
+
+RUN adduser www-data sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+RUN rm /var/www/html/index.nginx-debian.html
+
+RUN ln -s /var/www/html/deploy/env-dev /var/www/html/.env
+RUN ln -s /var/www/html/deploy/gcs_key.json /var/www/html/gcs_key.json
+RUN ln -s /var/www/html/deploy/gps_key.json /var/www/html/gps_key.json
+
+RUN chown -R www-data:www-data ./
+RUN usermod -a -G sudo www-data
+
+RUN chmod -R 0777 ./bootstrap/cache
+RUN chmod -R 0777 ./bootstrap/cache/*
+RUN chmod -R 0777 ./storage
+RUN chmod -R 0777 ./storage/*
+RUN chmod -R 0600 /var/www/html/deploy/env-dev
+RUN chmod -R 0600 /var/www/html/deploy/gcs_key.json
+RUN chmod -R 0600 /var/www/html/deploy/gps_key.json
+
+COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
+USER www-data
+
+
+RUN chmod -R +x ./deploy/run
+RUN chown -R www-data:www-data ./deploy/run
+
+ENTRYPOINT ["./deploy/run"]
+
+EXPOSE 80
+CMD ./rr serve --dotenv .env -c .rr.yaml

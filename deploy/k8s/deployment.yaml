@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: be-app-core-vendorcoreservice
+  name: be-app-core-vendorcoreservice
+  namespace: backend-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: be-app-core-vendorcoreservice
+  template:
+    metadata:
+      labels:
+        run: be-app-core-vendorcoreservice
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/eproc-holding-dev/app-core/vendorcoreservice:latest
+        name: be-app-core-vendorcoreservice
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 150m
+            ephemeral-storage: 250Mi
+            memory: 300Mi

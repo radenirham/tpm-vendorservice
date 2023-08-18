@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: be-app-core-vendorcoreservice
+  namespace: backend-service
+spec:
+  selector:
+     run: be-app-core-vendorcoreservice
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
