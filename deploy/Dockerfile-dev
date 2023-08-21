@@ -67,8 +67,8 @@ COPY ./deploy/config/php-config.ini /usr/local/etc/php/php.ini
 RUN curl -sS https://getcomposer.org/installer | \
 php -- --install-dir=/usr/bin/ --filename=composer
 
-RUN composer clearcache
-RUN composer selfupdate
+#RUN composer clearcache
+#RUN composer selfupdate
 RUN composer install
 
 RUN adduser www-data sudo
