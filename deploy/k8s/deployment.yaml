@@ -20,7 +20,7 @@ spec:
         name: be-app-core-vendorcoreservice
         securityContext:
           capabilities:
-            add: ["NET_ADMIN", "SYS_TIME", "NET_RAW"]
+            add: ["NET_RAW"]
         ports:
         - containerPort: 80
         resources:
