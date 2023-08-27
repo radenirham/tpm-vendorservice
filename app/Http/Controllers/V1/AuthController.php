@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Http\Controllers\V1\ApiController;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\VendorDetails as Model;
 use App\Models\Auth\ViewVendorUser;
 
 class AuthController extends ApiController
@@ -148,5 +148,24 @@ class AuthController extends ApiController
             );
         }
         return $this->output($status, $message, $data, $response);
+    }
+
+    public function register(array $data){
+        DB::beginTransaction();
+        $this->vendor_detail_vendor_uuid = $data['vendor_uuid'];
+        $this->vendor_detail_name = $data['name'];
+        $this->vendor_detail_company_type = $data['company'];
+        $this->vendor_detail_business_type = $data['business_type'];
+        $this->vendor_detail_country_code = $data['country'];
+        $this->vendor_detail_province_code = $data['province'];
+        $this->vendor_detail_city_code = $data['city'];
+        $this->vendor_detail_address = $data['address'];
+        $this->vendor_detail_phone = $data['phone'];
+        $this->vendor_detail_email = $data['email'];
+        $this->save();
+    }
+
+    public function registervendors(ModelRequest $request, Model $model){
+        $model->saveModel($request->all());
     }
 }
